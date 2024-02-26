@@ -10,9 +10,9 @@ class CreateAlatTable extends Migration
     {
         Schema::create('alat', function (Blueprint $table) {
             $table->id('alat_id');
-            $table->unsignedBigInteger('alat_kategori_id');
+            $table->unsignedBigInteger('alat_kategori_id')->nullable()->default(null);
             $table->string('alat_nama', 150);
-            $table->string('alat_deskripsi', 255);
+            $table->string('alat_deskripsi', 250)->default('')->nullable(false);
             $table->integer('alat_hargaperhari');
             $table->integer('alat_stok');
             $table->timestamps();

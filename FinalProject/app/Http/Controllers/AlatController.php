@@ -53,10 +53,11 @@ class alatController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'alat_name' => 'required|string|max:100',
+            'alat_nama' => 'required|string|max:100',
             'alat_stok' => 'required|numeric',
-            'alat_price' => 'required|numeric'
+            'alat_hargaperhari' => 'required|numeric'
         ]);
+
         if ($validator->fails()) {
             return response()->json([
                 'status' => 422,
@@ -64,7 +65,7 @@ class alatController extends Controller
                 'errors' => $validator->errors()
             ], 422);
         } else {
-            $alat = $this->alatModel->create_alat($validator->validated());
+            $alat = $this->alatModel->create($validator->validated());
 
             return response()->json([
                 'status' => 201,
@@ -73,13 +74,15 @@ class alatController extends Controller
             ], 201);
         }
     }
+
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'alat_name' => 'required|string|max:100',
+            'alat_nama' => 'required|string|max:100',
             'alat_stok' => 'required|numeric',
-            'alat_price' => 'required|numeric'
+            'alat_hargaperhari' => 'required|numeric'
         ]);
+
         if ($validator->fails()) {
             return response()->json([
                 'status' => 422,
@@ -95,6 +98,7 @@ class alatController extends Controller
             ], 200);
         }
     }
+
     public function destroy($id)
     {
         $alat = $this->alatModel->delete_alat($id);

@@ -10,9 +10,9 @@ class AlatModel extends Model
     protected $table = 'alat';
     protected $primaryKey = 'alat_id';
     protected $fillable = [
-        'alat_name',
+        'alat_nama',
         'alat_stok',
-        'alat_price',
+        'alat_hargaperhari',
     ];
 
     public function getAllAlat()
@@ -24,17 +24,19 @@ class AlatModel extends Model
         return $this->create($data);
     }
 
-    public function updateAlat($data, $id)
+    public function update_alat($data, $id)
     {
-        $alat = $this->find($id);
-        $alat->fill($data)->save();
+        $alat = self::find($id);
+        $alat->fill($data);
+        $alat->save();
         return $alat;
     }
-
-    public function deleteAlat($id)
+    public function delete_alat($id)
     {
-        $alat = $this->find($id);
-        $alat->delete();
+        $alat = self::find($id);
+        if ($alat) {
+            $alat->delete();
+        }
         return $alat;
     }
 }
