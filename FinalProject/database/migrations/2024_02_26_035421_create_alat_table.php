@@ -10,14 +10,14 @@ class CreateAlatTable extends Migration
     {
         Schema::create('alat', function (Blueprint $table) {
             $table->id('alat_id');
-            // $table->unsignedBigInteger('alat_kategori_id');
+            $table->unsignedBigInteger('alat_kategori_id');
             $table->string('alat_nama', 150);
             $table->string('alat_deskripsi', 255);
             $table->integer('alat_hargaperhari');
             $table->integer('alat_stok');
             $table->timestamps();
 
-            // $table->foreign('alat_kategori_id')->references('kategori_id')->on('kategori');
+            $table->foreign('alat_kategori_id')->references('kategori_id')->on('kategori');
         });
     }
 
