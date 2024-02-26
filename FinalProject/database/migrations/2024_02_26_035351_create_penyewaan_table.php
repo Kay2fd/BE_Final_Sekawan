@@ -10,13 +10,14 @@ class CreatePenyewaanTable extends Migration
     {
         Schema::create('penyewaan', function (Blueprint $table) {
             $table->id('penyewaan_id');
-            $table->foreignId('penyewaan_pelanggan_id')->constrained('pelangan');
+            $table->unsignedBigInteger('penyewaan_pelanggan_id');
             $table->date('penyewaan_tgl_sewa');
             $table->enum('penyewaan_stts_bayar', ['lunas', 'belum lunas', 'dp'])->default('belum lunas');
             $table->enum('penyewaan_stts_kembali', ['sudah kembali', 'belum kembali'])->default('belum kembali');
             $table->integer('penyewaan_totalharga');
             $table->timestamps();
 
+            $table->foreign('penyewaan_pelanggan_id')->references('pelanggan_id')->on('pelanggan');
         });
     }
 
