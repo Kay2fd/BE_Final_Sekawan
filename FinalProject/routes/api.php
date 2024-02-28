@@ -3,6 +3,8 @@
 use App\Http\Controllers\alatController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\PelangganDataController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('/alat', AlatController::class);
+Route::apiResource('/pelanggan', PelangganController::class);
+Route::apiResource('/pelanggandata', PelangganDataController::class);
