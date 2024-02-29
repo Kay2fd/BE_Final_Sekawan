@@ -44,7 +44,7 @@ class AdminController extends Controller
 
     public function update(Request $request)
     {
-        $admin = Auth::guard('admin')->user(); // Ambil admin yang sedang melakukan aksi
+        $admin = Auth::guard('admin')->user(); 
 
         $admin->update([
             'admin_username' => $request->input('admin_username', $admin->admin_username),

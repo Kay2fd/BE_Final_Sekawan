@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PelangganDataController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PenyewaanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +26,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('/alat', AlatController::class);
 Route::apiResource('/pelanggan', PelangganController::class);
 Route::apiResource('/pelanggandata', PelangganDataController::class);
-Route::post('/admin/login', [AdminController::class, 'login']);
+Route::apiResource('/penyewaan', PenyewaanController::class);
+Route::post('/login', [AdminController::class, 'login']);
+
+

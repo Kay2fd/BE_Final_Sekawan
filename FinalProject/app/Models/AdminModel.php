@@ -23,5 +23,4 @@ class Admin extends Model
     {
         $this->attributes['admin_password'] = Hash::make($value);
     }
-
 }
