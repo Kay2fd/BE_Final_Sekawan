@@ -12,6 +12,7 @@ class CreateAdminTable extends Migration
             $table->id('admin_id');
             $table->string('admin_username', 50);
             $table->string('admin_password', 255);
+            $table->string('admin_token', 255)->nullable();
             $table->timestamps();
         });
     }
