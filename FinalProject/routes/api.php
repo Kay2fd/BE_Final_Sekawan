@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PelangganDataController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PenyewaanController;
 
 /*
@@ -27,8 +28,5 @@ Route::apiResource('alat', AlatController::class);
 Route::apiResource('pelanggan', PelangganController::class);
 Route::apiResource('pelanggandata', PelangganDataController::class);
 Route::apiResource('penyewaan', PenyewaanController::class);
+Route::apiResource('kategori', KategoriController::class);
 Route::post('admin/login', 'AdminController@login');
-
-Route::middleware(['admin.jwt'])->group(function () {
-    Route::post('admin/dashboard', 'AdminController@dashboard');
-});
