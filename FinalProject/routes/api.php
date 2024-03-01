@@ -23,10 +23,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('/alat', AlatController::class);
-Route::apiResource('/pelanggan', PelangganController::class);
-Route::apiResource('/pelanggandata', PelangganDataController::class);
-Route::apiResource('/penyewaan', PenyewaanController::class);
-Route::post('/login', [AdminController::class, 'login']);
+Route::apiResource('alat', AlatController::class);
+Route::apiResource('pelanggan', PelangganController::class);
+Route::apiResource('pelanggandata', PelangganDataController::class);
+Route::apiResource('penyewaan', PenyewaanController::class);
+Route::post('admin/login', 'AdminController@login');
 
-
+Route::middleware(['admin.jwt'])->group(function () {
+    Route::post('admin/dashboard', 'AdminController@dashboard');
+});

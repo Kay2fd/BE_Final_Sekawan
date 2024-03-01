@@ -34,32 +34,32 @@ class PenyewaanController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'penyewaan_pelanggan_id' => 'required|exists:pelanggan,pelanggan_id',
-            'penyewaan_tgl_sewa' => 'required|date',
-            'penyewaan_stts_bayar' => 'required|in:lunas,belum lunas,dp',
-            'penyewaan_stts_kembali' => 'required|in:sudah kembali,belum kembali',
-            'penyewaan_totalharga' => 'required|integer',
-        ]);
+{
+    $validator = Validator::make($request->all(), [
+        'penyewaan_stts_bayar' => 'required|in:lunas,belum lunas,dp',
+        'penyewaan_stts_kembali' => 'required|in:sudah kembali,belum kembali',
+        'penyewaan_totalharga' => 'required|integer',
+        'penyewaan_pelanggan_id' => 'required|exists:pelanggan,pelanggan_id', 
+    ]);
 
-        if ($validator->fails()) {
-            return response()->json(['status' => 422, 'message' => 'Validasi pada data penyewaan gagal!', 'errors' => $validator->errors()], 422);
-        }
-
-        $penyewaan = $this->penyewaanModel->createPenyewaan($validator->validated());
-
-        return response()->json(['status' => 201, 'message' => 'Data penyewaan berhasil dibuat!', 'data' => $penyewaan], 201);
+    if ($validator->fails()) {
+        return response()->json(['status' => 422, 'message' => 'Validasi pada data penyewaan gagal!', 'errors' => $validator->errors()], 422);
     }
+
+    $penyewaanData = $validator->validated();
+    $penyewaan = $this->penyewaanModel->createPenyewaan($penyewaanData);
+
+    return response()->json(['status' => 201, 'message' => 'Data penyewaan berhasil dibuat!', 'data' => $penyewaan], 201);
+}
+
 
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'penyewaan_pelanggan_id' => 'required|exists:pelanggan,pelanggan_id',
-            'penyewaan_tgl_sewa' => 'required|date',
             'penyewaan_stts_bayar' => 'required|in:lunas,belum lunas,dp',
             'penyewaan_stts_kembali' => 'required|in:sudah kembali,belum kembali',
             'penyewaan_totalharga' => 'required|integer',
+            'penyewaan_pelanggan_id' => 'required|exists:pelanggan,pelanggan_id', 
         ]);
 
         if ($validator->fails()) {

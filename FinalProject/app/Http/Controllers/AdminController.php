@@ -10,6 +10,10 @@ use Illuminate\Validation\ValidationException;
 
 class AdminController extends Controller
 {
+    public function __construct()
+{
+    $this->middleware('admin.jwt', ['except' => ['login']]);
+}
     public function login(Request $request)
     {
         $request->validate([
