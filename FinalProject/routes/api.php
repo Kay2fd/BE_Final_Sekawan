@@ -8,6 +8,7 @@ use App\Http\Controllers\PelangganDataController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PenyewaanController;
+use App\Http\Controllers\PenyewaanDetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,4 +30,5 @@ Route::apiResource('pelanggan', PelangganController::class);
 Route::apiResource('pelanggandata', PelangganDataController::class);
 Route::apiResource('penyewaan', PenyewaanController::class);
 Route::apiResource('kategori', KategoriController::class);
+Route::apiResource('penyewaanDetail', PenyewaanDetailController::class);
 Route::post('admin/login', 'AdminController@login');
